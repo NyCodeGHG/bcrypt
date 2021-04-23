@@ -13,8 +13,8 @@ object BCryptTest {
     @JsName("simple_hash")
     fun `Simple Hash`() {
         val input = "hello"
-        val hash = BCrypt.hash(input)
-        assertTrue(BCrypt.verify("hello", hash), "Hashes are not matching")
+        val hash = hash(input)
+        assertTrue(verify("hello", hash), "Hashes are not matching")
     }
 
 }
