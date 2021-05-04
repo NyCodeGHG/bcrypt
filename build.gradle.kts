@@ -1,6 +1,10 @@
+import java.util.Base64
+
 plugins {
     kotlin("multiplatform") version "1.4.32"
     id("org.jetbrains.dokka") version "1.4.32"
+    `maven-publish`
+    signing
 }
 
 group = "de.nycode"
@@ -63,5 +67,74 @@ kotlin {
 tasks {
     dokkaHtml {
         outputDirectory.set(file("docs"))
+    }
+}
+
+val javadocJar = tasks.register<Jar>("javadocJar") {
+    archiveClassifier.set("javadoc")
+}
+
+val sonatypeUsername = project.findProperty("sonatypeUsername").toString()
+val sonatypePassword = project.findProperty("sonatypePassword").toString()
+
+publishing {
+    publications {
+        repositories {
+            maven {
+                name = "oss"
+                val releasesRepoUrl = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+                val snapshotsRepoUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+                url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
+                credentials {
+                    username = sonatypeUsername
+                    password = sonatypePassword
+                }
+            }
+        }
+        withType<MavenPublication> {
+            artifact(javadocJar)
+            pom {
+                name.set("BCrypt")
+                description.set("Kotlin multiplatform bcrypt library")
+                licenses {
+                    license {
+                        name.set("MIT")
+                        url.set("https://opensource.org/licenses/MIT")
+                    }
+                }
+                url.set("https://github.com/NyCodeGHG/bcrypt")
+                issueManagement {
+                    system.set("GitHub")
+                    url.set("https://github.com/NyCodeGHG/bcrypt/issues")
+                }
+                scm {
+                    connection.set("https://github.com/NyCodeGHG/bcrypt.git")
+                    url.set("https://github.com/NyCodeGHG/bcrypt")
+                }
+                developers {
+                    developer {
+                        name.set("NyCode")
+                        email.set("nico@nycode.de")
+                        url.set("https://nycode.de")
+                        timezone.set("Europe/Berlin")
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    val signingKey = findProperty("signingKey")?.toString()
+    val signingPassword = findProperty("signingPassword")?.toString()
+    if (signingKey != null && signingPassword != null) {
+        useInMemoryPgpKeys(
+            String(Base64.getDecoder().decode(signingKey.toByteArray())),
+            signingPassword
+        )
+    }
+
+    publishing.publications.withType<MavenPublication> {
+        sign(this)
     }
 }
