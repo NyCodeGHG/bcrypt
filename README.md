@@ -23,3 +23,18 @@ implementation("de.nycode:bcrypt:1.0.0")
   <type>pom</type>
 </dependency>
 ```
+
+## Usage
+### Hash
+```kotlin
+val hash = hash("Hello pls hash me")
+```
+
+### Verify
+```kotlin
+if (verify("Hello pls hash me", hash)) {
+    println("Valid")
+} else {
+    println("Invalid")
+}
+```
