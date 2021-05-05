@@ -11,7 +11,7 @@ This library is available via [maven central](https://search.maven.org/artifact/
 
 ## Gradle
 ```kotlin
-implementation("de.nycode:bcrypt:1.0.0")
+implementation("de.nycode:bcrypt:2.0.0")
 ```
 
 ## Maven
@@ -19,7 +19,7 @@ implementation("de.nycode:bcrypt:1.0.0")
 <dependency>
   <groupId>de.nycode</groupId>
   <artifactId>bcrypt</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
   <type>pom</type>
 </dependency>
 ```
