@@ -90,6 +90,16 @@ publishing {
                     password = sonatypePassword
                 }
             }
+            maven {
+                name = "nycode"
+                val releasesRepoUrl = uri("https://nycode.jfrog.io/artifactory/nycode-releases/")
+                val snapshotsUrl = uri("https://nycode.jfrog.io/artifactory/nycode-snapshots/")
+                url = if (version.toString().endsWith("SNAPSHOT")) snapshotsUrl else releasesRepoUrl
+                credentials {
+                    username = findProperty("jfrogUsername")?.toString()
+                    password = findProperty("jfrogPassword")?.toString()
+                }
+            }
         }
         withType<MavenPublication> {
             artifact(javadocJar)
