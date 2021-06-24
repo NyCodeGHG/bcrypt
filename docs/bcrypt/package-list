@@ -1,9 +1,0 @@
-$dokka.format:html-v1
-$dokka.linkExtension:html
-$dokka.location:de.nycode.bcrypt////PointingToDeclaration/bcrypt/de.nycode.bcrypt/index.html
-$dokka.location:de.nycode.bcrypt//hash/#kotlin.String#kotlin.Int/PointingToDeclaration/bcrypt/de.nycode.bcrypt/hash.html
-$dokka.location:de.nycode.bcrypt//hashAsync/#kotlin.String#kotlin.Int/PointingToDeclaration/bcrypt/de.nycode.bcrypt/hash-async.html
-$dokka.location:de.nycode.bcrypt//verify/#kotlin.String#kotlin.ByteArray/PointingToDeclaration/bcrypt/de.nycode.bcrypt/verify.html
-$dokka.location:de.nycode.bcrypt//verifyAsync/#kotlin.String#kotlin.ByteArray/PointingToDeclaration/bcrypt/de.nycode.bcrypt/verify-async.html
-de.nycode.bcrypt
-

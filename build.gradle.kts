@@ -1,14 +1,14 @@
 import java.util.Base64
 
 plugins {
-    kotlin("multiplatform") version "1.5.10"
+    kotlin("multiplatform") version "1.5.20"
     id("org.jetbrains.dokka") version "1.4.32"
     `maven-publish`
     signing
 }
 
 group = "de.nycode"
-version = "2.0.0"
+version = "2.1.0"
 
 repositories {
     mavenCentral()
@@ -64,14 +64,10 @@ kotlin {
     }
 }
 
-tasks {
-    dokkaHtml {
-        outputDirectory.set(file("docs"))
-    }
-}
-
-val javadocJar = tasks.register<Jar>("javadocJar") {
+val dokkaJar by tasks.registering(Jar::class) {
+    dependsOn("dokkaHtml")
     archiveClassifier.set("javadoc")
+    from(tasks.getByName("dokkaHtml"))
 }
 
 val sonatypeUsername = project.findProperty("sonatypeUsername").toString()
@@ -102,7 +98,7 @@ publishing {
             }
         }
         withType<MavenPublication> {
-            artifact(javadocJar)
+            artifact(dokkaJar)
             pom {
                 name.set("BCrypt")
                 description.set("Kotlin multiplatform bcrypt library")
