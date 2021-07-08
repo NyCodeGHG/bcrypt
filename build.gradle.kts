@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "de.nycode"
-version = "2.2.0"
+version = "2.1.1"
 
 repositories {
     mavenCentral()
@@ -84,16 +84,6 @@ publishing {
                 credentials {
                     username = sonatypeUsername
                     password = sonatypePassword
-                }
-            }
-            maven {
-                name = "nycode"
-                val releasesRepoUrl = uri("https://nycode.jfrog.io/artifactory/nycode-releases/")
-                val snapshotsUrl = uri("https://nycode.jfrog.io/artifactory/nycode-snapshots/")
-                url = if (version.toString().endsWith("SNAPSHOT")) snapshotsUrl else releasesRepoUrl
-                credentials {
-                    username = findProperty("jfrogUsername")?.toString()
-                    password = findProperty("jfrogPassword")?.toString()
                 }
             }
         }
