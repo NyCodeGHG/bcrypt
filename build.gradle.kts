@@ -48,7 +48,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-junit5"))
                 implementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
-                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.0")
             }
         }
         val jsMain by getting {
