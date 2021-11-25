@@ -1,14 +1,14 @@
 import java.util.Base64
 
 plugins {
-    kotlin("multiplatform") version "1.5.31"
-    id("org.jetbrains.dokka") version "1.5.31"
+    kotlin("multiplatform") version "1.6.0"
+    id("org.jetbrains.dokka") version "1.6.0"
     `maven-publish`
     signing
 }
 
 group = "de.nycode"
-version = "2.1.4"
+version = "2.2.0"
 
 repositories {
     mavenCentral()
@@ -18,7 +18,7 @@ kotlin {
     explicitApi()
     jvm {
         compilations.all {
-            kotlinOptions.jvmTarget = "11"
+            kotlinOptions.jvmTarget = "1.8"
         }
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
@@ -30,7 +30,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-RC")
             }
         }
         val commonTest by getting {
