@@ -1,7 +1,7 @@
 import java.util.Base64
 
 plugins {
-    kotlin("multiplatform") version "1.6.20"
+    kotlin("multiplatform") version "1.7.10"
     id("org.jetbrains.dokka") version "1.6.21"
     `maven-publish`
     signing
